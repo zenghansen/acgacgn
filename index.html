@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>爱奇艺vip电影</title>
+    <link href="./favicon.ico" rel="shortcut icon"/>
+    <meta name="author" content="hansen">
+    <meta name="keywords" content="爱奇艺vip电影">
+    <meta name="description" content="爱奇艺vip电影">
+
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <script src="js/jquery1.7.js" type="text/javascript"></script>
+    <script src="js/video.js"></script>
+    <script src="js/videojs-contrib-hls.js"></script>
+    <link href="css/css.css" rel="stylesheet" type="text/css">
+    <link href="css/video-js.css" rel="stylesheet" type="text/css">
+    <link href="css/videojs-sublime-theme.min.css" rel="stylesheet" type="text/css">
+    <style>
+        .video-js .vjs-big-play-button {
+            bottom: 10px;
+        }
+    </style>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?4e21cb76eac447d3b5315813d0e7e70b";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+<div class="header">
+    <div class="searchs">
+        <div class="from">
+
+            <input name="url" id="url" type="text" class="text"
+                   placeholder="请输入爱奇艺播放地址，例如：http://www.iqiyi.com/v_19rr7pggvo.html"
+                   value="">
+            <select id="selectbox" onChange="xuanzejiekou(this)">
+                <option value="http://api.baiyug.cn/vip/index.php?url=">线路1</option>
+                <option value="http://api.662820.com/xnflv/index.php?url=">线路2</option>
+                <option value="https://api.47ks.com/webcloud/?v=">线路3</option>
+                <option value="http://jiexi.92fz.cn/player/vip.php?url=">线路4</option>
+            </select>
+            <input name="doplayers" type="button" id="doplayers" class="button" value="立即播放">
+        </div>
+        <div id="clear"></div>
+    </div>
+</div>
+<div class="content">
+
+    <!--<video
+            controls
+            poster="http://res11.lamian.tv/lamian//8/20171008/15074737778309480.jpg"
+            data-setup='{}'
+            id=example-video class="video-js vjs-default-skin">
+        <source
+                src="http://static.lamian.tv/pc/public/file/card.mp4" type="video/mp4">
+        &lt;!&ndash;type="application/x-mpegURL"&ndash;&gt;
+    </video>-->
+    <div id="ckplays">
+        <iframe id="jiekou" name="jiekou" src="" width="100%" height="550px"></iframe>
+    </div>
+
+</div>
+<div class="footer">
+    <pre>声明：本站不参与录制、上传，且不储存任何资源，仅提供资源引用和分享。
+        若无意中侵犯到您的版权利益,我们将及时进行处理，并致以最深的歉意.本站不会对其內容负任何责任。管理员：375161864@qq.com</pre>
+    <span class="cnzz"><script
+            type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_1271288230'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1271288230%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></span>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    $("#doplayers").bind("click", function () {
+        players()
+    });
+
+    var jiekou = ""
+    function players() {
+        var a = $('#url').val();
+        if ($('#url').val() == "") {
+            alert('请输入视频网站网址！');
+            $('#url').focus();
+            return false;
+        }
+        var url = document.getElementById("url").value;
+        if (url.indexOf("://") == -1) {
+            url = "http://" + document.getElementById("url").value;
+        }
+        if (jiekou == "") {
+            document.getElementById("jiekou").src = "https://api.47ks.com/webcloud/?v=" + url;
+        } else {
+            document.getElementById("jiekou").src = jiekou + url;
+        }
+    }
+
+    function xuanzejiekou(v) {
+        var url = document.getElementById("url").value;
+        if (url == "") {
+            alert('请输入视频网站网址！');
+        } else {
+            jiekou = v.value
+        }
+    }
+</script>
+
+<script>
+    /*var player = videojs('example-video');
+     $(function () {
+     $('.vjs-poster').css('background-color', "#fff")
+
+     $('#play').click(function () {
+     player.src([{
+     type: "application/x-mpegURL",
+     src: "http://cache.m.iqiyi.com/mus/105541000/c72ed803b7db43b18ed77d1b075cc04a/afbe8fd3d73448c9/2498745147/20170921/89/c0/af12b2fd73d36888f6d9c0ca3ab0a118.m3u8?qd_originate=tmts_py&tvid=105541000&bossStatus=2&qd_vip=1&px=99M62OZilx5h1BAYm17KkBv7BOpuBRITYIZ2lyXtOfCAiKGFKJn0swQ73XrxzS9Dym2v6c&qd_src=2_20_201&prv=0&previewType=1&previewTime=6&from=&qd_time=1513584171542&qd_p=741621c7&qd_asc=63cab0e0342e90cd6440e617490878fd&qypid=105541000_04000000001000000000_2&qd_k=a679de517b821d62ece57f19b9a06b84&isdol=0&code=2&sgti=12_1291b57db4e3fe4ef34d5aabf016b56f_1513584168251&vf=4be216e697218a75a97117aac070e4a7&np_tag=nginx_part_tag&qypid=105541000_31"
+     }])
+     player.load()
+     player.play();
+     })
+     })*/
+    //player.play();
+</script>

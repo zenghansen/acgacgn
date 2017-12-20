@@ -1,0 +1,22 @@
+
+<iframe id="jiekou" name="jiekou" src="" width="100%" height="550px"></iframe>
+
+<script>
+    var jiekou = ""
+    function jiexi() {
+        var url = "http://m.iqiyi.com/v_19rrifktby.html";
+        var dizhi = ""
+
+        if (url.indexOf("://") == -1) {
+            url = "http://" + document.getElementById("url").value;
+        }
+        if(jiekou==""){
+            document.getElementById("jiekou").src = "https://api.47ks.com/webcloud/?v=" + url;
+        }else{
+            document.getElementById("jiekou").src = jiekou + url;
+        }
+    }
+
+    jiexi();
+
+</script>
